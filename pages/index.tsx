@@ -7,15 +7,27 @@ const pot = 20000;
 const drawAt = "9 Dec 2022 10:00 AM";
 const timeLeft = { hour: "14", min: "56", sec: "44" };
 
+//database only store necessary field, and use function to calculate
+
 const rounds = {
-  id: 44,
+  roundId: 44,
   date: "9 Dec 2022",
   time: "10:00 AM",
   pot: 20000,
   winningNumber: ["1", "2", "3", "4"],
   prizes: [1000, 2000, 3000, 4000],
   winningTickets: [30, 10, 5, 0],
+
   prizeEach: [33.33, 200, 600, 0], // prize won by each
+};
+
+const mytickets = {
+  //input roundId:44,
+  myTicket: [
+    { ticketNumber: ["1", "2", "3", "4"], match: 1, win: 33.33 },
+    { ticketNumber: ["1", "2", "3", "4"], match: 2, win: 2000 },
+    { ticketNumber: ["1", "2", "3", "4"], match: 1, win: 100 },
+  ],
 };
 
 export default function Home() {
@@ -70,7 +82,7 @@ export default function Home() {
 
       <div className="flex justify-center h-screen w-full mt-10">
         <PrizesCard
-          id={rounds.id}
+          id={rounds.roundId}
           date={rounds.date}
           time={rounds.time}
           pot={rounds.pot}
