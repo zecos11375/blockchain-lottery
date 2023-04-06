@@ -1,16 +1,16 @@
 import { Button, Typography } from "@mui/material";
-import { formatNumber } from "../../util/formatNumber";
+import { formatNumber } from "../../utils/formatNumber";
 import MatchingNumber from "./MatchingNumber";
 
 const mytickets = {
   round: 44,
   date: "9 Dec 2022",
   time: "10:00 AM",
-  winningNumber: ["1", "2", "3", "4"],
+  winningNumber: ["1", "2", "3", "  4", "5", "6"],
   myTicket: [
-    { ticketNumber: ["1", "2", "3", "4"], match: 0, win: 0 },
-    { ticketNumber: ["1", "2", "3", "4"], match: 2, win: 2000 },
-    { ticketNumber: ["1", "2", "3", "4"], match: 1, win: 100 },
+    { ticketNumber: ["1", "2", "3", "4", "5", "6"], match: 0, win: 0 },
+    { ticketNumber: ["1", "2", "3", "4", "5", "6"], match: 2, win: 2000 },
+    { ticketNumber: ["1", "2", "3", "4", "5", "6"], match: 1, win: 100 },
   ],
   currentRound: false,
 };

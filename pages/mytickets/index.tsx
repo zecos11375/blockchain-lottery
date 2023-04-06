@@ -2,7 +2,7 @@ import AppBar from "../../components/TopBar";
 import BottomBar from "../../components/BottomBar";
 import MyTicketsCard from "../../components/RoundsCard/MyTicketsCard";
 import { Typography, Button } from "@mui/material";
-import { formatNumber } from "../../util/formatNumber";
+import { formatNumber } from "../../utils/formatNumber";
 
 const myprizes = 1000;
 

@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
-import { divide } from "../../util/divide";
-import { formatNumber } from "../../util/formatNumber";
+import { divide } from "../../utils/divide";
+import { formatNumber } from "../../utils/formatNumber";
 import MatchingShape from "./MatchingNumber";
 
 // const winningNo = {
@@ -68,7 +68,7 @@ const PrizesCard = ({
             {winningNumber.map((number, index) => (
               <div
                 key={index}
-                className="flex items-center justify-center bg-black w-10 h-10 mx-2 rounded-full drop-shadow-lg text-white"
+                className="flex items-center justify-center bg-black w-7 h-7 mx-1 rounded-full drop-shadow-lg text-white"
               >
                 <Typography>{number}</Typography>
               </div>
