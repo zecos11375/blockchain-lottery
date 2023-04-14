@@ -1,8 +1,13 @@
-export const formatNumber = (num: number): string => {
+export const formatNumber = (numStr: string | undefined = "0"): string => {
+  const num = parseFloat(numStr);
+  if (isNaN(num)) {
+    return "0";
+  }
+
   const options = {
-    minimumFractionDigits: num % 1 === 0 ? 0 : 2, // show 2 decimal places if num has a decimal part, 0 otherwise
-    maximumFractionDigits: num % 1 === 0 ? 0 : 2, // same as minimumFractionDigits
-    useGrouping: true, // add a thousands separator
+    minimumFractionDigits: num % 1 === 0 ? 0 : 2,
+    maximumFractionDigits: num % 1 === 0 ? 0 : 2,
+    useGrouping: true,
   };
 
   return num.toLocaleString("en-US", options);

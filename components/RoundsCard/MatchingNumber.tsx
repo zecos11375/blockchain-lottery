@@ -24,6 +24,16 @@ const MatchingShape = ({ match }: Props) => {
         <div className="bg-green-500 h-3 w-3 rounded-full" />
       ) : (
         <div className="bg-red-500 h-3 w-3 rounded-full" />
+      )}{" "}
+      {match >= 4 ? (
+        <div className="bg-green-500 h-3 w-3 rounded-full" />
+      ) : (
+        <div className="bg-red-500 h-3 w-3 rounded-full" />
+      )}{" "}
+      {match >= 5 ? (
+        <div className="bg-green-500 h-3 w-3 rounded-full" />
+      ) : (
+        <div className="bg-red-500 h-3 w-3 rounded-full" />
       )}
     </div>
   );
