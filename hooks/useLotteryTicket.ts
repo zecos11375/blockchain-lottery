@@ -5,7 +5,15 @@ import { hexToArray } from "../utils/hexToArray";
 import { utils } from "../utils";
 import Web3 from "web3";
 
-const useLotteryTicket = () => {
+
+interface userInfoForLotteryId{
+size: string;
+ticketIds: string[];
+ticketNumbers: string[];
+status: string[];
+}
+
+const useLotteryTicket = (lotteryId: string) => {
   const provider = utils.chain.getChainProvider();
 
   const contractAddress = "0x6B3F1e8667ab53C95fb6BEef19A2022b474E6a84";
@@ -23,6 +31,20 @@ const useLotteryTicket = () => {
   const [userTicket, setUserTicket] = useState<any>();
   // const [currentLottery, setCurrentLottery] = useState<any>();
 
+  const objectifyViewUserInfoForLotteryId = (arr: string[]): userInfoForLotteryId => {
+    const ticketCount = parseInt(arr[3]);
+    console.log(ticketCount)
+
+    const obj: userInfoForLotteryId = {
+      size: arr[3],
+      ticketIds: arr.slice(5, 5+ticketCount),
+      ticketNumbers: arr.slice(5+ticketCount+1, 5+ticketCount+1+ticketCount),
+      status: arr.slice(5+ticketCount+1+ticketCount+1, 5+ticketCount+1+ticketCount+1+ticketCount)
+    };
+    return obj;
+  };
+
+
   const onChangeLoading = useCallback((v: boolean) => {
     setLoading(v);
     loadingRef.current = v;
@@ -33,16 +55,16 @@ const useLotteryTicket = () => {
       if (loadingRef.current) return;
       onChangeLoading(true);
 
-      const id = await contract?.currentTicketId();
+      const currentTicketId = await contract?.currentTicketId();
 
       //just try
       const user = await contract?.viewUserInfoForLotteryId(
         address,
-        "3",
+        '3',
         "0",
-        "50"
+        "101"
       );
-      if (user) setUserTicket(hexToArray(user));
+      if (user) setUserTicket(objectifyViewUserInfoForLotteryId(hexToArray(user)));
 
       //just try
       const r = await contract?.viewRewardsForTicketId("3", "89", "1");
@@ -57,12 +79,10 @@ const useLotteryTicket = () => {
         "56",
         "45",
       ]);
-      if (tickets) setTicketNumberStatus(Web3.utils.hexToNumberString(tickets));
+      if (tickets) setTicketNumberStatus(hexToArray(tickets));
 
-      if (id !== undefined) {
-        setCurrentTicketId(parseInt(id, 16));
-        // const tickets = await contract?.viewNumbersAndStatusesForTicketIds(id);
-        // setTicketNumberStatus(tickets);
+      if (currentTicketId !== undefined) {
+        setCurrentTicketId(parseInt(currentTicketId, 16));
       }
     } catch (e) {
       onChangeLoading(false);

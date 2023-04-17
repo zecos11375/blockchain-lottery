@@ -4,6 +4,7 @@ import { ChocolatePieLottery } from "../libs/ChocolatePieLottery";
 import { utils } from "../utils";
 import { hexToArray } from "../utils/hexToArray";
 import { convertUnixTimestamp } from "../utils/convertUnixTimestamp";
+import Web3 from "web3";
 
 // interface Obj {
 //   [key: string]: string;
@@ -37,7 +38,7 @@ const useLotteryRound = () => {
   const [loading, setLoading] = useState(false);
   const [contract, setContract] = useState<ChocolatePieLottery>();
 
-  const [currentId, setCurrentId] = useState<number>();
+  const [currentId, setCurrentId] = useState<any>();
   const [currentLottery, setCurrentLottery] = useState<Lottery>();
 
   // const lottertKey = [
@@ -121,7 +122,7 @@ const useLotteryRound = () => {
       onChangeLoading(false);
 
       if (id !== undefined) {
-        setCurrentId(parseInt(id, 16));
+        setCurrentId(Web3.utils.hexToNumberString(id));
         const hexLottery = await contract?.viewLottery(id);
         if (hexLottery)
           setCurrentLottery(transformArrayToObject(hexToArray(hexLottery)));

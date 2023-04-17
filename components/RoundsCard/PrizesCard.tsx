@@ -61,7 +61,7 @@ const PrizesCard = ({
   const { currentId, currentLottery, loadingRef, fetchCurrentId } =
     useLotteryRound();
   const { currentTicketId, ticketNumberStatus, rewards, userTicket } =
-    useLotteryTicket();
+    useLotteryTicket(currentId);
 
   const calculateReward = (
     total: string,
